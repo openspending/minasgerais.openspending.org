@@ -1,0 +1,96 @@
+
+/* OKFN Brand font, not related to WDMMG. */
+
+@font-face {
+  font-family: 'OpenSansLight';
+  src: url('../img/opensans-light-webfont.eot');
+  src: url('../img/opensans-light-webfont.eot?#iefix') format('embedded-opentype'), url('../img/opensans-light-webfont.woff') format('woff'), url('../img/opensans-light-webfont.ttf') format('truetype'), url('opensans-light-webfont.svg#OpenSansLight') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: "OpenSansSemibold";
+    font-style: normal;
+    font-weight: 600;
+    src: url("../img/opensans-semibold-webfont.eot?#iefix") format("embedded-opentype"), url("../img/opensans-semibold-webfont.woff") format("woff"), url("../img/opensans-semibold-webfont.ttf") format("truetype"), url("../img/opensans-semibold-webfont.svg#OpenSansLight") format("svg");
+}
+
+html {
+  
+}
+
+body {
+  min-height: 80%;
+}
+
+body, p, blockquote p {
+  font-family: Palatino, georgia, 'times new roman', serif;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+blockquote p {
+  font-style: italic;
+  margin-bottom: 1em;
+}
+
+a {
+  color: #04627B;
+}
+
+.spaced {
+  margin-top: 3em;
+  margin-bottom: 0em;
+}
+
+#logo {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  font-size: 2em;
+}
+
+#logo a:hover {
+  text-decoration: none;
+}
+
+.main-header {
+  text-align: center;
+}
+
+/* 
+ * Nav and Footer styles based on OKFN brand design. 
+ */
+
+nav, 
+footer,
+footer p {
+  font-family: "OpenSansLight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/* 
+ * Visualization-specific styles. 
+ */
+
+#bubbletree {
+  margin: 0 auto;
+  width: 940px;
+  height: 550px;
+}
+
+#bubbletree .label {
+  background-color: rgba(0,0,0,0);
+}
+
+#bubbletree .desc {
+  font-family: "OpenSansLight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  line-height: 13px;
+}
+
+#bubbletree .amount {
+  font-family: Palatino, georgia, 'times new roman', serif;
+  font-size: 14px;
+}
