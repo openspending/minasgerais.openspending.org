@@ -65,9 +65,10 @@ title: Despesa do Estado de Minas Gerais
 		var onNodeClick = function(node) {
 		    node.breakdownsByName = {};
             _.each(node.breakdowns, function(e) {
-                node.breakdownsByName[e.map_code.trim()] = e;
+                //node.breakdownsByName[e.map_code.trim()] = e;
+                node.breakdownsByName[e.name] = e;
             });
-            console.log(node);
+            
 			var 
 			// create a nice colorscale based on the selected bubble color
 			hcl = chroma.hex(node.color).hcl(),			
@@ -118,7 +119,8 @@ title: Despesa do Estado de Minas Gerais
 				drilldowns: ['function', 'subfunction'],
 				cuts: ['year:'+year],
 				rootNodeLabel: 'Grand Total ('+year+')', 
-				breakdown: 'municipality',
+				//breakdown: 'municipality',
+                breakdown: 'district',
 				callback: function(data) {
 					
 					$('#preloader').remove();
@@ -151,11 +153,14 @@ title: Despesa do Estado de Minas Gerais
 			
 			var map = wdmmg_cramap.map = $K.map('#cm-map');
     	 	map.loadStyles('css/map.css', function() {
-				map.loadMap('img/minas-gerais-adm3.svg', function() {
+				//map.loadMap('img/minas-gerais-adm3.svg', function() {
+                map.loadMap('img/minas-gerais-regiao.svg', function() {
 					map.addLayer('IRL');
 					map.addLayer({ 
-						id: 'municipality', 
-						key: 'cd-geocodm'
+						//id: 'municipality', 
+						//key: 'cd-geocodm'
+                        id: 'regiao', 
+                        key: 'cd-regiao'
 					});
 				}); // map.loadMap(function())
      		}); // map.loadStyles(function())
