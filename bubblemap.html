@@ -1,0 +1,58 @@
+---
+layout: default
+title: Despesa do Estado de Minas Gerais
+---
+
+<script src="{{site.openspendingjs}}/app/bubblemap/bubblemap.js"></script>
+<script src="{{site.openspendingjs}}/lib/vendor/raphael-min.js"></script>
+<script src="{{site.openspendingjs}}/lib/vendor/kartograph.min.js"></script>
+<script src="{{site.openspendingjs}}/lib/vendor/chroma.js"></script>
+<script src="{{site.openspendingjs}}/lib/vendor/jquery.qtip.min.js"></script>
+<script src="/img/functions/cofog.js"></script>
+
+<script type="text/javascript">
+(function ($) {
+  yepnope([
+   { load: OpenSpending.getBubbleMapDependencies('{{site.openspendingjs}}'),
+     complete: function() {
+       new OpenSpending.BubbleMap({
+          openspendingjs: '{{site.openspendingjs}}',
+          query: {
+            dataset: 'br-mg-ppagloc',
+            cuts: ['year:2011'],
+            drilldowns: ['cofog1', 'function', 'subfunction'],
+            breakdown: 'region',
+            rootNodeLabel: 'Despesas totais'
+          },
+          bubbleStyles: {
+							'cofog1':  BubbleTreeStyles.Cofog1,
+				  },
+          map: {
+            url: '/img/minas-gerais-regiao.svg',
+            layerName: 'regiao',
+            keyAttribute: 'cd-regiao',
+            legendText: 'Expenditure on'
+          },
+          table: { show: false }
+        });
+    }
+   }
+  ]); // yepnope()
+})(jQuery)
+</script>
+
+<div id="wdmmg-bubblemap">
+  <div id="preloader" style="text-align: center; padding: 100px"><img src="/img/ajax-loader.gif" style="vertical-align:top" /> &nbsp;<span class="txt">loading javascript libraries</span></div>
+
+  <div id="wdmmg-bt">
+    <div class="bubbletree-wrapper">
+        <div id="wdmmg-bubbletree" class="bubbletree"></div>
+    </div>  
+  </div>
+  <div id="wdmmg-map-legend" class="under-curtain"></div>
+  <div id="wdmmg-map" class="under-curtain"></div>
+</div><!-- /#wdmmg-bubblemap -->
+
+
+
+

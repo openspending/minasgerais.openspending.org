@@ -1,0 +1,27 @@
+---
+layout: default
+title: Despesa do Estado de Minas Gerais
+---
+
+<link rel="stylesheet" type="text/css" href="{{site.openspendingjs}}/app/treetable/style.css">
+
+<div id="treetable_widget"></div>
+
+<script type="text/javascript" src="{{site.openspendingjs}}/prod/boot.js"></script>
+<script type="text/javascript" src="{{site.openspendingjs}}/lib/vendor/backbone-0.9.1.js"></script>
+<script type="text/javascript" src="{{site.openspendingjs}}/lib/widgets.js"></script>
+<script type="text/javascript" src="{{site.openspendingjs}}/widgets/treemap/main.js"></script>
+<script type="text/javascript" src="{{site.openspendingjs}}/widgets/aggregate_table/main.js"></script>
+<script type="text/javascript" src="{{site.openspendingjs}}/app/treetable/treetable.js"></script>
+<script type="text/javascript" src="/js/treetable.js"></script>
+<script>
+  $(function() {
+    OpenSpending.scriptRoot = "{{site.openspendingjs}}";
+    Backbone.history.start();
+  });
+</script>
+
+
+
+
+
