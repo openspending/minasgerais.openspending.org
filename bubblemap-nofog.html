@@ -16,12 +16,12 @@ title: Despesa do Estado de Minas Gerais
           query: {
             dataset: 'br-mg-ppagloc',
             cuts: ['year:2011'],
-            drilldowns: ['cofog1', 'function', 'subfunction'],
+            drilldowns: ['function', 'subfunction'],
             breakdown: 'region',
             rootNodeLabel: 'Despesas totais'
           },
           bubbleStyles: {
-							'cofog1':  BubbleTreeStyles.Cofog1
+							'cofog1':  BubbleTreeStyles.Cofog1,
 				  },
           map: {
             url: '/img/minas-gerais-regiao.svg',
