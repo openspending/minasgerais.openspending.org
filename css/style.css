@@ -9,7 +9,7 @@ body {
 }
 
 body, p, blockquote p {
-  font-family: 'OpenSansLight', sans-serif;
+  font-family: 'OpenSans', sans-serif;
 }
 
 blockquote p {
@@ -47,7 +47,7 @@ a {
 nav, 
 footer,
 footer p {
-  font-family: "OpenSansLight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "OpenSans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
@@ -67,7 +67,7 @@ footer p {
 }
 
 #bubbletree .desc {
-  font-family: "OpenSansLight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "OpenSans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 11px;
   line-height: 13px;
 }
