@@ -2,5 +2,6 @@ pygments: true
 auto: true
 
 title: Minas Gerais
+openspending: http://openspending.org
 openspendingjs: http://openspending.org/static/openspendingjs
 

@@ -8,35 +8,83 @@ title: Despesa do Estado de Minas Gerais
 
 <script type="text/javascript">
 (function ($) {
-  yepnope([
-   { load: OpenSpending.getBubbleMapDependencies('{{site.openspendingjs}}'),
-     complete: function() {
-       new OpenSpending.BubbleMap({
-          openspendingjs: '{{site.openspendingjs}}',
-          query: {
-            dataset: 'br-mg-ppagloc',
-            cuts: ['year:2011'],
-            drilldowns: ['cofog1', 'function', 'subfunction'],
-            breakdown: 'region',
-            rootNodeLabel: 'Despesas totais'
-          },
-          bubbleStyles: {
-							'cofog1':  BubbleTreeStyles.Cofog1
-				  },
-          map: {
-            url: '/img/minas-gerais-regiao.svg',
-            layerName: 'regiao',
-            keyAttribute: 'cd-regiao',
-            legendText: 'Expenditure on'
-          },
-          table: { show: false }
+    function setupYearsLinks(container, dataset, callback) {
+      container.empty();
+
+      function fetchDistinct(dimension, attribute, query) {
+        var dfd = $.ajax({
+            url: '{{site.openspending}}/' + dataset + '/' + dimension + '.distinct',
+            data: {attribute: attribute, q: query, limit: 20},
+            dataType: 'jsonp',
+            cache: true,
+            jsonpCallback: 'distinct_' + btoa(dimension + '__' + attribute + '__' + query).replace(/\=/g, '')
+            });
+        return dfd.promise();
+      }
+
+      function renderYears(years) {
+        _.each(years.sort(), function (year) {
+          container.append('<a class="btn" data-year="'+year+'" href="#">'+year+'</a>');
         });
+      }
+
+      function setupYearsEvents() {
+        container.find('a').click(function () {
+          var element = $(this);
+          element.siblings().removeClass('active')
+          element.addClass('active');
+          callback(element.data().year);
+          return false;
+        });
+      }
+
+      return fetchDistinct('time', 'year').then(function (distinct) {
+        var years = _.map(distinct.results, function (result) {
+          return result.year;
+        });
+
+        renderYears(years);
+        setupYearsEvents();
+      }).promise();
+    };
+
+  function newBubbleMap(year) {
+    new OpenSpending.BubbleMap({
+       openspendingjs: '{{site.openspendingjs}}',
+       query: {
+         dataset: 'br-mg-ppagloc',
+         cuts: ['year:'+year],
+         drilldowns: ['cofog1', 'function', 'subfunction'],
+         breakdown: 'region',
+         rootNodeLabel: 'Despesas totais'
+       },
+       bubbleStyles: {
+         'cofog1':  BubbleTreeStyles.Cofog1
+       },
+       map: {
+         url: '/img/minas-gerais-regiao.svg',
+         layerName: 'regiao',
+         keyAttribute: 'cd-regiao',
+         legendText: 'Expenditure on'
+       },
+       table: { show: false }
+    });
+  };
+
+  yepnope([{
+    load: OpenSpending.getBubbleMapDependencies('{{site.openspendingjs}}'),
+    complete: function() {
+      setupYearsLinks($('#yearsContainer'), 'br-mg-ppagloc', function (year) {
+        newBubbleMap(year);
+      }).then(function () {
+        $('#yearsContainer a:last').click();
+      });;
     }
-   }
-  ]); // yepnope()
-})(jQuery)
+  }]); // yepnope()
+})(jQuery);
 </script>
 
+<div id="yearsContainer"></div>
 <div id="wdmmg-bubblemap">
   <div id="preloader" style="text-align: center; padding: 100px"><img src="/img/ajax-loader.gif" style="vertical-align:top" /> &nbsp;<span class="txt">loading javascript libraries</span></div>
 
