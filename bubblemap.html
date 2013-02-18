@@ -23,9 +23,11 @@ title: Despesa do Estado de Minas Gerais
       }
 
       function renderYears(years) {
-        _.each(years.sort(), function (year) {
-          container.append('<a class="btn" data-year="'+year+'" href="#">'+year+'</a>');
-        });
+        years.sort();
+
+        for (var i in years) {
+          container.append('<a class="btn" data-year="'+years[i]+'" href="#">'+years[i]+'</a>');
+        };
       }
 
       function setupYearsEvents() {
@@ -39,9 +41,11 @@ title: Despesa do Estado de Minas Gerais
       }
 
       return fetchDistinct('time', 'year').then(function (distinct) {
-        var years = _.map(distinct.results, function (result) {
-          return result.year;
-        });
+        var years = [];
+        for (var i in distinct.results) {
+          var result = distinct.results[i];
+          years.push(result.year);
+        }
 
         renderYears(years);
         setupYearsEvents();
