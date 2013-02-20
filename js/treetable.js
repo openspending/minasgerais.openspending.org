@@ -21,11 +21,10 @@ $(function() {
 
     drilldown: function(args) {
       var router = this;
-      var currentFilters = this.getFilters();
+      var currentFilters = router.getFilters();
       router.treetable.drilldown(currentFilters, function (name, filters, drilldown) {
-        var filters = _.extend({}, filters);
         filters[drilldown] = name;
-        this.setFilters(filters);
+        router.setFilters(filters);
       });
     },
 
@@ -52,7 +51,7 @@ $(function() {
     initialize: function(elem, context, filters, drilldowns) {
       this.treetable = OpenSpending.Treetable(elem, context, drilldowns);
       this.initialFilters = filters;
-    },
+    }
   });
 
   OpenSpending.app = new OpenSpending.WidgetLink($('#treetable_widget'), context, {'year': '2011'}, ['function', 'subfunction']);
